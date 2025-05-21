@@ -8,3 +8,5 @@ name = "10k-dependency-graph"
 path = "src/main.rs"
 
 [dependencies]
+serde = { version = "1.0.219", features = ["derive"] }
+serde_yaml = "0.9.34"

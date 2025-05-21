@@ -1,0 +1,94 @@
+apt:
+  eth_port: "eth0"
+  host: apt.node.consul
+
+mealie:
+  eth_port: "eth0"
+  host: mealie.node.consul
+  #TODO: setup encrypted_drive
+  sites:
+    mealie.local:
+      port: 801
+      owner: root # TODO: specify root by default
+
+vintage-story:
+  node_meta:
+    type: game
+    game: vintage-story
+  host: vintage-story.node.consul
+  eth_port: "eth0"
+
+
+bitwarden:
+  host: bitwarden.node.consul
+  sites:
+    bitwarden.local:
+      port: 85
+      owner: root # TODO: specify root by default
+  encrypted_drives:
+    - dev: /dev/sdb
+      mapped: encry_vault
+      dst: /mnt/vault
+      before:
+        - docker.service
+        - multi-user.target
+
+nas:
+  host: nas.node.consul
+  encrypted_drives:
+    - dev: /dev/sdb
+      mapped: nas
+      dst: /mnt/nas
+      before:
+        - docker.service
+        - multi-user.target
+
+forge:
+  host: forge.node.consul
+  #TODO: tcp ssh tunnel
+  sites:
+    forge.local:
+      port: 3000
+      owner: root # TODO: specify root by default
+  encrypted_drives:
+    - dev: /dev/sdb
+      mapped: encry_data
+      dst: /mnt/data
+      before:
+        - docker.service
+        - multi-user.target
+
+consul:
+  eth_port: "eth0"
+  host: consul.node.consul
+  consul_role: server
+  consul_altname: server.dc1.consul
+
+vault:
+  # node_meta:
+  # TODO: no pihole
+  eth_port: "eth0"
+  host: vault.node.consul
+  tls_targets:
+    vault.local:
+
+traefik:
+  eth_port: "eth0"
+  host: traefik.node.consul
+  unique_traefik: true
+
+woodpecker:
+  eth_port: "eth0"
+  host: woodpecker.node.consul
+  sites:
+    woodpecker.local:
+      port: 8090
+      owner: root # TODO: specify root by default
+
+adguard:
+  eth_port: "eth0"
+  host: adguard.node.consul
+  sites:
+    adguard.local:
+      port: 800
+      owner: root # TODO: specify root by default

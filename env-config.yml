@@ -1,0 +1,26 @@
+services:
+  - name: jellyfin
+    deps:
+      - ssl
+      - apt
+
+  - name: ssl
+    deps:
+      - ifconfig
+      - apt
+
+  - name: ifconfig
+    deps:
+    - apt
+
+  - name: docker
+    deps:
+    - wsl
+    - apt
+
+  - name: wsl
+    deps:
+    - apt
+
+  - name: apt
+  
