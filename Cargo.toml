@@ -1,0 +1,10 @@
+[package]
+name = "k10-dependency-graph"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "10k-dependency-graph"
+path = "src/main.rs"
+
+[dependencies]
